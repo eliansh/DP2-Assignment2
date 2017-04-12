@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workFlowSystem xmlns="http://www.example.org/WFInfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/WFInfo WFInfo.xsd">
+    <workFlows>
+        <workFlow flowName="PrepaidSale">
+            <actions>
+                <action actionName="InvoiceIssuance" actionRole="Accountingman" automaticallyInstantiated="true">
+                    <simpleAct>
+                        <nextAction nextPossibleAction="PaymentReception"/>
+                    </simpleAct>
+                </action>
+                <action actionName="PaymentReception" actionRole="Accountingman" automaticallyInstantiated="false">
+                    <simpleAct>
+                        <nextAction nextPossibleAction="GoodsDelivery"/>
+                    </simpleAct>
+                </action>
+                <action actionName="GoodsDelivery" actionRole="Warehouseman" automaticallyInstantiated="false">
+                    <simpleAct/>
+                </action>
+            </actions>
+            <processes>
+                <process startTime="2015-10-15T11:32:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="true" terminationTime="2015-10-16T03:09:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Caio Di Noto" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="PaymentReception" terminated="false" takenInCharge="true">
+                            <actor actorName="Caio Di Noto" actorRole="Accountingman"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-10-06T21:04:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="true" terminationTime="2015-10-08T22:27:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Caio Di Noto" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="PaymentReception" terminated="true" terminationTime="2015-10-10T12:15:40.000+02:00" takenInCharge="true">
+                            <actor actorName="James Prisco" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="GoodsDelivery" terminated="false" takenInCharge="false"/>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-11-01T00:30:40.000+01:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="false" takenInCharge="false"/>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-10-24T11:23:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="true" terminationTime="2015-10-25T23:45:40.000+01:00" takenInCharge="true">
+                            <actor actorName="James Prisco" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="PaymentReception" terminated="true" terminationTime="2015-10-27T12:47:40.000+01:00" takenInCharge="true">
+                            <actor actorName="James Prisco" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="GoodsDelivery" terminated="true" terminationTime="2015-10-28T09:20:40.000+01:00" takenInCharge="true">
+                            <actor actorName="Andrew Perla" actorRole="Warehouseman"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-10-30T06:54:40.000+01:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="true" terminationTime="2015-10-31T13:38:40.000+01:00" takenInCharge="true">
+                            <actor actorName="Caio Di Noto" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="PaymentReception" terminated="true" terminationTime="2015-10-31T16:27:40.000+01:00" takenInCharge="true">
+                            <actor actorName="James Prisco" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="GoodsDelivery" terminated="true" terminationTime="2015-11-02T00:30:40.000+01:00" takenInCharge="true">
+                            <actor actorName="Andrew Perla" actorRole="Warehouseman"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+            </processes>
+        </workFlow>
+        <workFlow flowName="NormalSale">
+            <actions>
+                <action actionName="PaymentReception" actionRole="Accountingman" automaticallyInstantiated="false">
+                    <simpleAct/>
+                </action>
+                <action actionName="InvoiceIssuance" actionRole="Accountingman" automaticallyInstantiated="true">
+                    <simpleAct>
+                        <nextAction nextPossibleAction="PaymentReception"/>
+                    </simpleAct>
+                </action>
+                <action actionName="GoodsDelivery" actionRole="Warehouseman" automaticallyInstantiated="true">
+                    <simpleAct/>
+                </action>
+            </actions>
+            <processes>
+                <process startTime="2015-10-27T10:35:40.000+01:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="GoodsDelivery" terminated="false" takenInCharge="false"/>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="false" takenInCharge="false"/>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-10-18T14:53:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="GoodsDelivery" terminated="true" terminationTime="2015-10-19T17:34:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Henry H La Viola" actorRole="Warehouseman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="true" terminationTime="2015-10-21T06:26:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Paola Garibo" actorRole="Accountingman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="PaymentReception" terminated="true" terminationTime="2015-10-22T00:40:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Paola Garibo" actorRole="Accountingman"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-10-10T08:24:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="GoodsDelivery" terminated="false" takenInCharge="false"/>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="false" takenInCharge="false"/>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-10-06T08:50:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="GoodsDelivery" terminated="false" takenInCharge="true">
+                            <actor actorName="Andrea Balestro" actorRole="Warehouseman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="InvoiceIssuance" terminated="false" takenInCharge="true">
+                            <actor actorName="Paola Garibo" actorRole="Accountingman"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+            </processes>
+        </workFlow>
+        <workFlow flowName="SaleManagement">
+            <actions>
+                <action actionName="AcceptOrder" actionRole="Salesman" automaticallyInstantiated="true">
+                    <simpleAct>
+                        <nextAction nextPossibleAction="PrepaidSale"/>
+                        <nextAction nextPossibleAction="NormalSale"/>
+                    </simpleAct>
+                </action>
+                <action actionName="NormalSale" actionRole="SalesManager" automaticallyInstantiated="false">
+                    <processAct relatedWorkFlow="NormalSale"/>
+                </action>
+                <action actionName="PrepaidSale" actionRole="SalesManager" automaticallyInstantiated="false">
+                    <processAct relatedWorkFlow="PrepaidSale"/>
+                </action>
+            </actions>
+            <processes>
+                <process startTime="2015-10-22T00:06:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="AcceptOrder" terminated="true" terminationTime="2015-10-22T15:02:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Henry H Lamarn" actorRole="Salesman"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="PrepaidSale" terminated="true" terminationTime="2015-10-24T03:41:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Carol Li Ming" actorRole="SalesManager"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+            </processes>
+        </workFlow>
+        <workFlow flowName="ArticleProduction">
+            <actions>
+                <action actionName="Revising" actionRole="Journalist" automaticallyInstantiated="false">
+                    <simpleAct>
+                        <nextAction nextPossibleAction="Checking"/>
+                    </simpleAct>
+                </action>
+                <action actionName="Writing" actionRole="Journalist" automaticallyInstantiated="true">
+                    <simpleAct>
+                        <nextAction nextPossibleAction="Checking"/>
+                    </simpleAct>
+                </action>
+                <action actionName="Checking" actionRole="Editor" automaticallyInstantiated="false">
+                    <simpleAct>
+                        <nextAction nextPossibleAction="Revising"/>
+                        <nextAction nextPossibleAction="Publication"/>
+                    </simpleAct>
+                </action>
+                <action actionName="Publication" actionRole="Editor" automaticallyInstantiated="false">
+                    <simpleAct/>
+                </action>
+            </actions>
+            <processes>
+                <process startTime="2015-10-14T19:23:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="Writing" terminated="true" terminationTime="2015-10-15T12:20:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Anreina Di Creo" actorRole="Journalist"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="Checking" terminated="true" terminationTime="2015-10-15T23:37:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Eva Milan" actorRole="Editor"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="Revising" terminated="true" terminationTime="2015-10-16T23:57:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Anreina Di Creo" actorRole="Journalist"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="Checking" terminated="false" takenInCharge="true">
+                            <actor actorName="Mary Piccoli" actorRole="Editor"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+                <process startTime="2015-10-11T03:41:40.000+02:00">
+                    <actionStatuses>
+                        <actionStatus actionStatName="Writing" terminated="true" terminationTime="2015-10-13T04:45:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Carol Garibo" actorRole="Journalist"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="Checking" terminated="true" terminationTime="2015-10-14T13:02:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Marco Piccoli" actorRole="Editor"/>
+                        </actionStatus>
+                        <actionStatus actionStatName="Publication" terminated="true" terminationTime="2015-10-16T13:27:40.000+02:00" takenInCharge="true">
+                            <actor actorName="Marco Piccoli" actorRole="Editor"/>
+                        </actionStatus>
+                    </actionStatuses>
+                </process>
+            </processes>
+        </workFlow>
+    </workFlows>
+</workFlowSystem>

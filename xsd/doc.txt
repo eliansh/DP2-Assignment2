@@ -1,0 +1,9 @@
+Schema enables to specify constraints on data formats better than DTD, so I could specify the formats described in the specification (e.g. for the workflow name and action name and role I used regular expressions").
+
+I specified a key constraint for the flowName: the value must be unique (within a parent element) and is referenced by other elements (keyref).
+The relatedWorkFlow inside the ProcessAction references the flowName through a keyref.
+I specified a key constraint for the actionName: the value must be unique (within a parent element) and is referenced by other elements (keyref).
+The actionStatName inside the ActionStatus references the actionName through a keyref.
+
+I specified "optional" when the value is optional, "required" when it is mandatory.
+

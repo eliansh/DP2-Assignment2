@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/WFInfo"
+xmlns:tns="http://www.example.org/WFInfo" elementFormDefault="qualified">
+<element name="workFlowSystem" type="tns:workFlowSystemType">
+
+	
+	
+	 <key name="workFlowNameKey">
+      <selector xpath="tns:workFlows/tns:workFlow" />
+      <field xpath="@flowName" />
+    </key>
+
+    <keyref name="relatedWorkFlowKeyRef" refer="tns:workFlowNameKey">
+      <selector xpath="tns:workFlows/tns:workFlow/tns:actions/tns:action" />
+      <field xpath="@relatedWorkFlow" />
+    </keyref>
+	
+	
+	
+</element>
+    
+    
+    <complexType name="workFlowSystemType">
+    	<sequence>	
+    		<element name="workFlows" type="tns:workFlowsType"/>
+    	</sequence>
+    </complexType>
+    
+    
+    <complexType name="workFlowsType">
+    	<sequence>
+    		<element name="workFlow" minOccurs="0" maxOccurs="unbounded" type="tns:workFlowType">
+    		
+    		<key name="actionNameKey">
+     		  <selector xpath="tns:actions/tns:action" />
+    	      <field xpath="@actionName" />
+    		</key>
+
+  		    <keyref name="actionStatNameKeyRef" refer="tns:actionNameKey">
+     		 <selector xpath="tns:processes/tns:process/tns:actionStatuses/tns:actionStatus" />
+    		  <field xpath="@actionStatName" />
+    		 </keyref>
+    		</element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="workFlowType">
+    	<sequence>
+    		<element name="actions" type="tns:actionsType">
+    		</element>
+    		<element name="processes" type="tns:processesType"></element>
+    	</sequence>
+		    	
+		<attribute name="flowName" use="required" type="tns:nameType"/>
+	</complexType>
+	
+    
+    <complexType name="actionsType">
+    	<sequence>
+    		<element name="action" minOccurs="0" maxOccurs="unbounded" type="tns:actionType"></element>
+    	</sequence>
+    </complexType>
+    
+    <simpleType name="nameType">
+	    <restriction base="token">
+		    	<minLength value="1"></minLength>
+		    	<pattern value="[A-Za-z][A-Za-z0-9]*"/>
+		</restriction>
+    </simpleType>
+    
+    <simpleType name="roleType">
+	    <restriction base="token">
+		    		<minLength value="1"></minLength>
+		    		<pattern value="[A-Za-z]+"/>
+		    	</restriction>
+    </simpleType>
+    
+    <complexType name="actionType">
+    	<sequence>
+    	    <element name="simpleAct" minOccurs="0" maxOccurs="1" type="tns:simpleActType"></element>
+    		<element name="processAct" minOccurs="0" maxOccurs="1" type="tns:processActType"></element>
+    	</sequence>
+    	<attribute name="actionName" use="required" type="tns:nameType"/>
+    	<attribute name="actionRole" use="required" type="tns:roleType"/>
+    	<attribute name="automaticallyInstantiated" use="required" type="boolean"/>
+    </complexType>
+    
+    <complexType name="simpleActType">
+    	<sequence>
+    		<element name="nextAction" minOccurs="0" maxOccurs="unbounded" type="tns:nextActionType"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="nextActionType">
+    		<attribute name="nextPossibleAction" use="required" type="tns:nameType"/>
+    </complexType>
+    
+    <complexType name="processActType">
+    	<attribute name="relatedWorkFlow" use="required" type="tns:nameType"/>
+    </complexType>
+    
+    <complexType name="processesType">
+    	<sequence>
+    		<element name="process" minOccurs="0" maxOccurs="unbounded" type="tns:processType"></element>
+    	</sequence>
+    </complexType>
+    
+     <complexType name="processType">
+    	<sequence>
+    		<element name="actionStatuses" type="tns:actionStatusesType"></element>
+    	</sequence>
+    	<attribute name="startTime" use="required" type="dateTime"></attribute>
+    </complexType>
+    
+    <complexType name="actionStatusesType">
+    	<sequence>
+    		<element name="actionStatus" minOccurs="0" maxOccurs="unbounded" type="tns:actionStatusType"></element>
+    	</sequence>
+    </complexType>
+    
+     <complexType name="actionStatusType">
+    	<sequence>
+    		<element name="actor" minOccurs="0" maxOccurs="1" type="tns:actorType"></element>
+    	</sequence>
+    	<attribute name="actionStatName" use="required" type="tns:nameType"></attribute>
+    	<attribute name="terminated" use="required" type="boolean"></attribute>
+    	<attribute name="terminationTime" use="optional" type="dateTime"></attribute>
+    	<attribute name="takenInCharge" use="required" type="boolean"></attribute>
+    </complexType>
+    
+    <complexType name="actorType">
+    	<attribute name="actorName" use="required" type="string"></attribute>
+    	<attribute name="actorRole" use="required" type="string"></attribute>
+    </complexType>
+    
+</schema>
